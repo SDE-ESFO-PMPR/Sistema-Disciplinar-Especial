@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Disciplinar Especial</title>
+    <style>
+        * {
+            /* Garante que os espaçamentos não quebrem o tamanho no celular */
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px; /* Impede que o quadro encoste nas bordas do celular */
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 360px; /* Limite máximo para o PC */
+            text-align: center;
+        }
+        .titulo-principal {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 5px 0;
+        }
+        .titulo-secundario {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin: 0 0 25px 0;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="titulo-principal">Sistema Disciplinar Especial</div>
+        <div class="titulo-secundario">Escola de Formação de Oficiais</div>
+        
+        <input type="email" id="email" placeholder="Digite seu E-mail" required>
+        <input type="password" id="senha" placeholder="Digite sua Senha" required>
+        <button onclick="alert('Sistema de login será conectado em breve!')">Entrar</button>
+    </div>
+
+</body>
+</html>
