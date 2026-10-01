@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Disciplinar Especial</title>
     <style>
-        * {
-            /* Garante que os espaçamentos não quebrem o tamanho no celular */
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -17,7 +14,7 @@
             height: 100vh;
             background-color: #f0f2f5;
             margin: 0;
-            padding: 20px; /* Impede que o quadro encoste nas bordas do celular */
+            padding: 20px;
         }
         .login-container {
             background-color: white;
@@ -25,7 +22,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             width: 100%;
-            max-width: 360px; /* Limite máximo para o PC */
+            max-width: 360px;
             text-align: center;
         }
         .titulo-principal {
@@ -62,6 +59,12 @@
         button:hover {
             background-color: #0056b3;
         }
+        #mensagem {
+            margin-top: 15px;
+            font-size: 14px;
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -72,8 +75,55 @@
         
         <input type="email" id="email" placeholder="Digite seu E-mail" required>
         <input type="password" id="senha" placeholder="Digite sua Senha" required>
-        <button onclick="alert('Sistema de login será conectado em breve!')">Entrar</button>
+        <button id="btn-entrar">Entrar</button>
+        <div id="mensagem"></div>
     </div>
 
+    <!-- Script do Firebase -->
+    <script type="module">
+        // Importando as ferramentas do Firebase direto da internet
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        // ==========================================
+        // APAGUE AS 3 LINHAS ABAIXO E COLE AS SUAS CHAVES AQUI:
+        const firebaseConfig = {
+  apiKey: "AIzaSyCkKS_7BnedfFh3Fj-mzdee2smawDCFfd8",
+  authDomain: "sistema-disciplinar-esfo.firebaseapp.com",
+  projectId: "sistema-disciplinar-esfo",
+  storageBucket: "sistema-disciplinar-esfo.firebasestorage.app",
+  messagingSenderId: "204144876025",
+  appId: "1:204144876025:web:ff5ee099c41183239a0528"
+        };
+        // ==========================================
+
+        // Ligando o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Configurando o botão de Entrar
+        document.getElementById('btn-entrar').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const divMensagem = document.getElementById('mensagem');
+            
+            divMensagem.innerText = "Conectando...";
+            divMensagem.style.color = "blue";
+
+            signInWithEmailAndPassword(auth, email, senha)
+                .then((userCredential) => {
+                    // Deu certo!
+                    divMensagem.innerText = "Login realizado com sucesso!";
+                    divMensagem.style.color = "green";
+                    
+                    // Aqui depois faremos o código para enviar o usuário para a tela principal
+                })
+                .catch((error) => {
+                    // Deu erro (senha errada, usuario nao existe, etc)
+                    divMensagem.innerText = "Erro: E-mail ou senha incorretos.";
+                    divMensagem.style.color = "red";
+                });
+        });
+    </script>
 </body>
 </html>
